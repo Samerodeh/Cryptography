@@ -51,7 +51,7 @@ uvloop = ["uvloop (>=0.15.2)"]
 name = "click"
 version = "8.0.3"
 description = "Composable command line interface toolkit"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -62,9 +62,17 @@ colorama = {version = "*", markers = "platform_system == \"Windows\""}
 name = "colorama"
 version = "0.4.4"
 description = "Cross-platform colored terminal text."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+
+[[package]]
+name = "joblib"
+version = "1.1.0"
+description = "Lightweight pipelining with Python functions"
+category = "main"
+optional = false
+python-versions = ">=3.6"
 
 [[package]]
 name = "more-itertools"
@@ -81,6 +89,28 @@ description = "Experimental type system extensions for programs checked with the
 category = "dev"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "nltk"
+version = "3.6.5"
+description = "Natural Language Toolkit"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+click = "*"
+joblib = "*"
+regex = ">=2021.8.3"
+tqdm = "*"
+
+[package.extras]
+all = ["numpy", "python-crfsuite", "matplotlib", "twython", "requests", "scikit-learn", "gensim (<4.0.0)", "pyparsing", "scipy"]
+corenlp = ["requests"]
+machine_learning = ["gensim (<4.0.0)", "numpy", "python-crfsuite", "scikit-learn", "scipy"]
+plot = ["matplotlib"]
+tgrep = ["pyparsing"]
+twitter = ["twython"]
 
 [[package]]
 name = "packaging"
@@ -169,7 +199,7 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xm
 name = "regex"
 version = "2021.10.23"
 description = "Alternative regular expression module, to replace re."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -180,6 +210,22 @@ description = "A lil' TOML parser"
 category = "dev"
 optional = false
 python-versions = ">=3.6"
+
+[[package]]
+name = "tqdm"
+version = "4.62.3"
+description = "Fast, Extensible Progress Meter"
+category = "main"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,>=2.7"
+
+[package.dependencies]
+colorama = {version = "*", markers = "platform_system == \"Windows\""}
+
+[package.extras]
+dev = ["py-make (>=0.1.0)", "twine", "wheel"]
+notebook = ["ipywidgets (>=6)"]
+telegram = ["requests"]
 
 [[package]]
 name = "typing-extensions"
@@ -200,7 +246,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "ef7fedb058210c5bfc84874aa7968e29bf9eaa1c2ca0a4a4cf6884c2b280c05d"
+content-hash = "e193acb04f806d9158d604429105e7fd73fafd308b0ab123b941a6511b98f74a"
 
 [metadata.files]
 atomicwrites = [
@@ -223,6 +269,10 @@ colorama = [
     {file = "colorama-0.4.4-py2.py3-none-any.whl", hash = "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"},
     {file = "colorama-0.4.4.tar.gz", hash = "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b"},
 ]
+joblib = [
+    {file = "joblib-1.1.0-py2.py3-none-any.whl", hash = "sha256:f21f109b3c7ff9d95f8387f752d0d9c34a02aa2f7060c2135f465da0e5160ff6"},
+    {file = "joblib-1.1.0.tar.gz", hash = "sha256:4158fcecd13733f8be669be0683b96ebdbbd38d23559f54dca7205aea1bf1e35"},
+]
 more-itertools = [
     {file = "more-itertools-8.10.0.tar.gz", hash = "sha256:1debcabeb1df793814859d64a81ad7cb10504c24349368ccf214c664c474f41f"},
     {file = "more_itertools-8.10.0-py3-none-any.whl", hash = "sha256:56ddac45541718ba332db05f464bebfb0768110111affd27f66e0051f276fa43"},
@@ -230,6 +280,10 @@ more-itertools = [
 mypy-extensions = [
     {file = "mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},
     {file = "mypy_extensions-0.4.3.tar.gz", hash = "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"},
+]
+nltk = [
+    {file = "nltk-3.6.5-py3-none-any.whl", hash = "sha256:95fb4f577efe93af21765e9b2852235c2c6a405885da2a70f397478d94e906e0"},
+    {file = "nltk-3.6.5.zip", hash = "sha256:834d1a8e38496369390be699be9bca4f2a0f2175b50327272b2ec7a98ffda2a0"},
 ]
 packaging = [
     {file = "packaging-21.0-py3-none-any.whl", hash = "sha256:c86254f9220d55e31cc94d69bade760f0847da8000def4dfe1c6b872fd14ff14"},
@@ -300,6 +354,10 @@ regex = [
 tomli = [
     {file = "tomli-1.2.1-py3-none-any.whl", hash = "sha256:8dd0e9524d6f386271a36b41dbf6c57d8e32fd96fd22b6584679dc569d20899f"},
     {file = "tomli-1.2.1.tar.gz", hash = "sha256:a5b75cb6f3968abb47af1b40c1819dc519ea82bcc065776a866e8d74c5ca9442"},
+]
+tqdm = [
+    {file = "tqdm-4.62.3-py2.py3-none-any.whl", hash = "sha256:8dd278a422499cd6b727e6ae4061c40b48fce8b76d1ccbf5d34fca9b7f925b0c"},
+    {file = "tqdm-4.62.3.tar.gz", hash = "sha256:d359de7217506c9851b7869f3708d8ee53ed70a1b8edbba4dbcb47442592920d"},
 ]
 typing-extensions = [
     {file = "typing_extensions-3.10.0.2-py2-none-any.whl", hash = "sha256:d8226d10bc02a29bcc81df19a26e56a9647f8b0a6d4a83924139f4a8b01f17b7"},
